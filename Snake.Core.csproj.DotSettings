@@ -3,7 +3,11 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Cfood/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Cfood_005Cmodel/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Cfood_005Cservice/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Cfood_005Cservice_005Csettings/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Cgrid/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Cscore/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Csnake/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Csnake_005Cmodel/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=assets_005Csnake_002Ecore_005Cruntime_005Ccore_005Csnake_005Cservice/@EntryIndexedValue">True</s:Boolean>

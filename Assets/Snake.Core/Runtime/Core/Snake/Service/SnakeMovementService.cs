@@ -1,5 +1,3 @@
-using System.Numerics;
-
 namespace Snake.Core
 {
     public class SnakeMovementService : ISnakeMovementService

@@ -15,5 +15,7 @@ namespace Snake.Core
         void SetDirection(Vector2Int direction);
         void AddPartAt(Vector2Int part, int index);
         void RemovePartAt(int index);
+        void Grow();
+
     }
 }

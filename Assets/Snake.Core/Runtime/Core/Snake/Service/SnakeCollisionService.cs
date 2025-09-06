@@ -4,7 +4,13 @@ namespace Snake.Core
     {
         private readonly GridModel _gridModel;
         private readonly SnakeModel _snakeModel;
-            
+
+        public SnakeCollisionService(GridModel gridModel, SnakeModel snakeModel)
+        {
+            _gridModel = gridModel;
+            _snakeModel = snakeModel;
+        }
+
         public bool IsCollided()
         {
             var snake = _snakeModel.Parts;

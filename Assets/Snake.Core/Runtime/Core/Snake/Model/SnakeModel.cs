@@ -33,5 +33,10 @@ namespace Snake.Core
         {
             _parts.RemoveAt(index);
         }
+
+        public void Grow()
+        {
+            _parts.Add(Tail);
+        }
     }
 }
