@@ -25,6 +25,7 @@ namespace Snake
         private void OnGameOver(GameOverSignal obj)
         {
             _windowService.RemoveCurrent();
+            
             ChangeState(GameState.GameOver);
         }
 

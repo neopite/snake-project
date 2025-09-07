@@ -24,6 +24,8 @@ namespace Snake
 
         private void OnPlayAgainPressed()
         {
+            _windowService.RemoveCurrent();
+            
             ChangeState(GameState.Reload);
         }
 
