@@ -14,7 +14,7 @@ namespace Snake
         [SerializeField]
         private GameObject _head;
 
-        private int _growSegments = 0;
+        private int _partsToGrow = 0;
 
         public void Awake()
         {
@@ -24,7 +24,7 @@ namespace Snake
 
         public void Grow()
         {
-            _growSegments++;
+            _partsToGrow++;
         }
         
         public void MoveSnake(Vector2Int moveDirection)
@@ -44,9 +44,9 @@ namespace Snake
 
         private void RemoveTail()
         {
-            if (_growSegments > 0)
+            if (_partsToGrow > 0)
             {
-                _growSegments--;   
+                _partsToGrow--;   
                 return;         
             }
             

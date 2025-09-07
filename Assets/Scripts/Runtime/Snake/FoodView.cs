@@ -5,9 +5,5 @@ namespace Snake
 {
     public class FoodView : MonoBehaviour
     {
-        public void SetPosition(Vector2Int position)
-        {
-            transform.position = new Vector3(position.X, position.Y, 0);
-        }
     }
 }

@@ -15,7 +15,7 @@ namespace Snake
         {
             _signalBus.Subscribe<GameOverSignal>(OnGameOver);
             
-            _signalBus.Fire<StartGameControllerSignal>();
+            _signalBus.Fire<LaunchGameControllerSignal>();
         }
 
         private void OnGameOver(GameOverSignal obj)

@@ -5,10 +5,6 @@ using Object = UnityEngine.Object;
 
 namespace Snake
 {
-    public interface IGameControllerPresenter
-    {
-    }
-    
     public class GameControllerPresenter : IGameControllerPresenter, IInitializable, IDisposable
     {
         private readonly ISnakeModel _snakeModel;
@@ -41,32 +37,41 @@ namespace Snake
 
         public void Initialize()
         {
-            _signalBus.Subscribe<StartGameControllerSignal>(Start);
+            _signalBus.Subscribe<LaunchGameControllerSignal>(Start);
         }
 
+        private void Start()
+        {
+            _gameController.OnGameLoopStepCompleted += OnModelStepCompleted;
+            _gameController.OnControllerStateChanged += OnGameStateChanged;
+            
+            _gameController.InitializeGrid();
+            InitializeGridView();
 
-        public void Start()
+            _gameController.LaunchLoop();
+        }
+
+        private void InitializeGridView()
         {
             var gameTemplate = _gameViewRootProvider.Get();
             var gameView = Object.Instantiate(gameTemplate);
             _view = gameView;
-            
             _view.SetGridSize(_gridModel.Width, _gridModel.Height);
-            _gameController.OnStepUpdated += OnModelUpdated;
-            _gameController.OnStateChanged += OnGameStateChanged;
             
-            _gameController.Initialize();
+            var newPos = _foodService.CurrentFoodPosition;
+            var foodView = _foodViewSpawner.SpawnFood(newPos);
+            _view.SetFood(foodView);
         }
 
-        private void OnGameStateChanged(GameResult obj)
+        private void OnGameStateChanged(ControllerState obj)
         {
-            if (obj == GameResult.GameOver)
+            if (obj == ControllerState.GameOver)
             {
                 _signalBus.Fire<GameOverSignal>();
             }
         }
 
-        private void OnModelUpdated(StepResult result)
+        private void OnModelStepCompleted(StepResult result)
         {
             if (result == StepResult.Collided)
             {
@@ -83,22 +88,14 @@ namespace Snake
                 var foodView = _foodViewSpawner.SpawnFood(newPos);
                 _view.SetFood(foodView);
             }
-
-            
-            //TODO remove it further. Extra and bad solution  
-            if (result == StepResult.Initialize)
-            {
-                var newPos = _foodService.CurrentFoodPosition;
-                var foodView = _foodViewSpawner.SpawnFood(newPos);
-                _view.SetFood(foodView);
-            }
         }
 
         public void Dispose()
         {
-            _gameController.OnStepUpdated -= OnModelUpdated;
+            _gameController.OnGameLoopStepCompleted -= OnModelStepCompleted;
+            _gameController.OnControllerStateChanged -= OnGameStateChanged;
             
-            _signalBus.Unsubscribe<StartGameControllerSignal>(Start);
+            _signalBus.Unsubscribe<LaunchGameControllerSignal>(Start);
         }
     }
 }
