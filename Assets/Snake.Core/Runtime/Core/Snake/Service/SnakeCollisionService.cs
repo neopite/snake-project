@@ -2,10 +2,10 @@ namespace Snake.Core
 {
     public class SnakeCollisionService : ISnakeCollisionService
     {
-        private readonly GridModel _gridModel;
-        private readonly SnakeModel _snakeModel;
+        private readonly IGridModel _gridModel;
+        private readonly ISnakeModel _snakeModel;
 
-        public SnakeCollisionService(GridModel gridModel, SnakeModel snakeModel)
+        public SnakeCollisionService(IGridModel gridModel, ISnakeModel snakeModel)
         {
             _gridModel = gridModel;
             _snakeModel = snakeModel;
@@ -22,6 +22,11 @@ namespace Snake.Core
                 return true;
             }
 
+            if (snake.Count == 1)
+            {
+                return false;
+            }
+            
             for (var i = 1; i < snake.Count; i++)
             {
                 if (snake[i] == snakeHead)

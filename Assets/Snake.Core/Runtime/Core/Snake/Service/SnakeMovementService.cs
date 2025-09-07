@@ -2,9 +2,9 @@ namespace Snake.Core
 {
     public class SnakeMovementService : ISnakeMovementService
     {
-        private readonly SnakeModel _snakeModel;
+        private readonly ISnakeModel _snakeModel;
 
-        public SnakeMovementService(SnakeModel snakeModel)
+        public SnakeMovementService(ISnakeModel snakeModel)
         {
             _snakeModel = snakeModel;
         }

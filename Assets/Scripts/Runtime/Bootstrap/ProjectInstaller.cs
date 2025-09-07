@@ -6,9 +6,13 @@ namespace Snake
     {
         public override void InstallBindings()
         {
+            SignalBusInstaller.Install(Container);
             Container.BindInterfacesTo<GameStateMachineFactory>().AsSingle();
             Container.BindInterfacesTo<AppRoot>().AsSingle();
+            
+            Container.DeclareSignal<StartGameControllerSignal>();
+            Container.DeclareSignal<GameOverSignal>();
+
         }
-        
     }
 }

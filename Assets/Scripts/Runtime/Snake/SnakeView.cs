@@ -1,12 +1,13 @@
 using UnityEngine;
+using Vector2Int = Snake.Core.Vector2Int;
 
 namespace Snake
 {
     public class SnakeView : MonoBehaviour
     {
-        public void SetInitialPosition(int x, int y)
+        public void UpdatePosition(Vector2Int moveDirection)
         {
-            gameObject.transform.position = new Vector3(x, y, 0);
+            transform.position += new Vector3(moveDirection.X, moveDirection.Y,0);
         }
     }
 }

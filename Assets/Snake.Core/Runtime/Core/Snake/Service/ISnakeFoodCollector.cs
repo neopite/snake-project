@@ -2,6 +2,6 @@ namespace Snake.Core
 {
     public interface ISnakeFoodCollector
     {
-        void CollectFood(FoodModel model);
+        void CollectFood(IFoodModel model);
     }
 }

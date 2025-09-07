@@ -17,9 +17,16 @@ namespace Snake.Core
             _currentFood = foodToSpawn;
         }
 
-        public bool CanCollectFood(Vector2Int position)
+        public bool CanCollectFood(Vector2Int position, out FoodModel food)
         {
-            return _currentFood.Position == position;
+            food = null;
+            
+            if (_currentFood?.Position == position)
+            {
+                food = _currentFood;
+            }
+
+            return _currentFood?.Position == position;
         }
     }
 }

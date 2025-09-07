@@ -3,15 +3,15 @@ namespace Snake.Core
     public class SnakeFoodCollector : ISnakeFoodCollector
     {
         private readonly ISnakeModel _snakeModel;
-        private readonly ScoreModel _scoreModel;
+        private readonly IScoreModel _scoreModel;
 
-        public SnakeFoodCollector(ISnakeModel snakeModel, ScoreModel scoreModel)
+        public SnakeFoodCollector(ISnakeModel snakeModel, IScoreModel scoreModel)
         {
             _snakeModel = snakeModel;
             _scoreModel = scoreModel;
         }
 
-        public void CollectFood(FoodModel model)
+        public void CollectFood(IFoodModel model)
         {
             _snakeModel.Grow();
             
