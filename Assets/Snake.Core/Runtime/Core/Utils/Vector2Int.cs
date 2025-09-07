@@ -9,7 +9,7 @@ namespace Snake.Core
         public static Vector2Int Right = new(1, 0);
         public static Vector2Int Left = new(-1, 0);
         public static Vector2Int Up = new(0, 1);
-        public static Vector2Int Down = new(0, 1);
+        public static Vector2Int Down = new(0, -1);
         
         public readonly int X;
         public readonly int Y;

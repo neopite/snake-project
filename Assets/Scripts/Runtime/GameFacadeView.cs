@@ -10,15 +10,27 @@ namespace Snake
         
         [SerializeField]
         private GridView _grid;
-
+        
         public void MoveSnake(Vector2Int moveDirection)
         {
-            _snake.UpdatePosition(moveDirection);
+            _snake.MoveSnake(moveDirection);
         }
-
+        
         public void SetGridSize(int width, int height)
         {
             _grid.SetGridSize(width, height);
         }
+        
+        public void SetFood(FoodView food)
+        {
+            _grid.SetFood(food);
+        }
+
+        public void EatFood()
+        {
+            _grid.EatFood();
+            _snake.Grow();
+        }
+        
     }
 }

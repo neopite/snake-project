@@ -5,6 +5,8 @@ namespace Snake.Core
         private readonly IFoodSpawner _foodSpawner;
         
         private FoodModel _currentFood;
+        
+        public Vector2Int CurrentFoodPosition => _currentFood.Position;
 
         public FoodService(IFoodSpawner foodSpawner)
         {

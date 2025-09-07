@@ -9,14 +9,14 @@ namespace Snake
 {
     public interface IGameController
     {
-        event Action OnStepUpdated;
+        event Action<StepResult> OnStepUpdated;
         event Action<GameResult> OnStateChanged;
         void Initialize();
     }
     
     public class GameController : IGameController,IDisposable
     {
-        public event Action OnStepUpdated;
+        public event Action<StepResult> OnStepUpdated;
         public event Action<GameResult> OnStateChanged;
         
         private readonly ISnakeModel _snakeModel;
@@ -52,6 +52,10 @@ namespace Snake
 
             _isGameRunning = true;
             
+            _foodService.PlaceFood();
+            
+            OnStepUpdated?.Invoke(StepResult.Initialize);
+            
             RunLoop().Forget();
         }
 
@@ -66,7 +70,7 @@ namespace Snake
 
         private void Step()
         {
-            Debug.Log("Step performing");
+            StepResult stepResult = StepResult.None;
             
             _snakeMovementService.Move();
 
@@ -74,22 +78,23 @@ namespace Snake
             {
                 OnStateChanged?.Invoke(GameResult.GameOver);
                 _isGameRunning = false;
-                return;
+                stepResult = StepResult.Collided;
             }
             
             if (_foodService.CanCollectFood(_snakeModel.Head, out var foodModel))
             {
                 _snakeFoodCollector.CollectFood(foodModel);
-
                 _foodService.PlaceFood();
+                stepResult = StepResult.FoodEaten;
             }
             
-            OnStepUpdated?.Invoke();
+            Debug.Log($"Step completed with result {stepResult}");
+            OnStepUpdated?.Invoke(stepResult);
         }
 
         private void OnInputDirectionChanged(Vector2Int direction)
         {
-            _snakeModel.SetDirection(direction);
+            _snakeMovementService.SetDirection(direction);
         }
 
         public void Dispose()
@@ -102,5 +107,13 @@ namespace Snake
     {
         Playing,
         GameOver
+    }
+
+    public enum StepResult
+    {
+        None,
+        Initialize,
+        FoodEaten,
+        Collided
     }
 }

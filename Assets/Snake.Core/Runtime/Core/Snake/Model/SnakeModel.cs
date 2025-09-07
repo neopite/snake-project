@@ -5,7 +5,7 @@ namespace Snake.Core
     public class SnakeModel : ISnakeModel
     {
         private List<Vector2Int> _parts;
-        private Vector2Int _direction = new(1,0);
+        private Vector2Int _direction = new(0, 0);
         
         public Vector2Int Direction => _direction;
         

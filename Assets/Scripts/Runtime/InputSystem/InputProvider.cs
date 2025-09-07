@@ -41,8 +41,6 @@ namespace Snake
             {
                 OnInputDirectionChanged?.Invoke(Vector2Int.Right);
             }
-            
-            Debug.Log("Move dir: " + value);
         }
 
         public void Dispose()

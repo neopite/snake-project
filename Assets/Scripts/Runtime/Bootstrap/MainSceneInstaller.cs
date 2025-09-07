@@ -30,6 +30,8 @@ namespace Snake
             Container.BindInterfacesTo<GameViewRootProvider>().AsSingle();
 
             Container.BindInterfacesTo<GameControllerPresenter>().AsSingle();
+            Container.BindInterfacesTo<FoodViewSpawner>().AsSingle();
+
         }
     }
 }
