@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Snake
@@ -10,18 +11,22 @@ namespace Snake
     
     public abstract class BaseState<T> : IState where T : struct
     {
-        public T Name { get; }
+        public event Action<T> OnChangeStateTo;
+
 
         public void Enter()
         {
-            Debug.Log($"Entered {Name}");
             OnEnter();
         }
         
         public void Exit()
         {
-            Debug.Log($"Exited {Name}");
             OnExit();
+        }
+
+        protected void ChangeState(T state)
+        {
+            OnChangeStateTo?.Invoke(state);
         }
         
         public abstract void OnEnter();

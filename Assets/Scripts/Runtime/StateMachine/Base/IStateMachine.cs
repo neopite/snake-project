@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Snake
 {
@@ -13,7 +14,7 @@ namespace Snake
         void SetRegister(IStateRegister<TState> register);
     }
     
-    public class BaseStateMachine<TState> : IStateMachine<TState> where TState : struct
+    public class BaseStateMachine<TState> : IDisposable, IStateMachine<TState> where TState : struct
     {
         public event Action OnStateChanged;
         public TState CurrentState { get; private set;}
@@ -25,9 +26,20 @@ namespace Snake
         {
             var state = _register.Get(newState);
             _currentState?.Exit();
-            state.Enter();
+            state.OnChangeStateTo += OnChangedStateTo;
             _currentState = state;
-            CurrentState = _currentState.Name;
+            CurrentState = newState;
+            state.Enter();
+            
+            Debug.Log($"Switched to : {newState}");
+            OnStateChanged?.Invoke();
+        }
+
+        private void OnChangedStateTo(TState newState)
+        {
+            _currentState.OnChangeStateTo -= OnChangedStateTo;
+            
+            Switch(newState);
         }
 
         public void SetRegister(IStateRegister<TState> register)
@@ -36,6 +48,13 @@ namespace Snake
 
             _register.Register();
         }
-        
+
+        public void Dispose()
+        {
+            if (_currentState != null)
+            {
+                _currentState.OnChangeStateTo -= OnChangedStateTo;
+            }
+        }
     }
 }

@@ -1,4 +1,3 @@
-using UnityEngine;
 using Zenject;
 
 namespace Snake
@@ -7,8 +6,6 @@ namespace Snake
     {
         public override void InstallBindings()
         {
-            Debug.Log("ProjectInstaller.InstallBindings called!");
-
             Container.BindInterfacesTo<GameStateMachineFactory>().AsSingle();
             Container.BindInterfacesTo<AppRoot>().AsSingle();
         }

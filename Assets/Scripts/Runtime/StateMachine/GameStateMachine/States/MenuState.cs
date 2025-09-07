@@ -4,7 +4,7 @@ namespace Snake
     {
         public override void OnEnter()
         {
-            
+            ChangeState(GameState.LoadingLevel);
         }
 
         public override void OnExit()
