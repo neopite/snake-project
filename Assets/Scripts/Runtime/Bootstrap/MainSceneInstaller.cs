@@ -6,6 +6,7 @@ namespace Snake
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<InputProvider>().AsSingle();
         }
     }
 }
