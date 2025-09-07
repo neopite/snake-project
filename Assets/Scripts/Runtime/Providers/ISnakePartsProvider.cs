@@ -1,22 +1,27 @@
+using Cysharp.Threading.Tasks;
+using Snake.Providers;
 using Snake.Skinning;
 using UnityEngine;
 using Zenject;
 
 namespace Snake
 {
-    public interface ISnakePartsProvider : ISkinnable
+    public interface ISnakePartsProvider : ISkinnable, IAssetProvider
     {
         SnakePartView GetHead();
         SnakePartView GetTail();
         SnakePartView GetBody();
     }
     
-    public class SnakePartProvider : ISnakePartsProvider, IInitializable
+    public class SnakePartProvider : ISnakePartsProvider
     {
         private SnakePartView _snakeBody;
-        public void Initialize()
+
+        public async UniTask Load()
         {
-            _snakeBody = Resources.Load<SnakePartView>("SnakePart");
+            var snakePartObject = await Resources.LoadAsync<SnakePartView>("SnakePart").ToUniTask();
+            
+            _snakeBody = snakePartObject as SnakePartView;
         }
 
         public SnakePartView GetHead()

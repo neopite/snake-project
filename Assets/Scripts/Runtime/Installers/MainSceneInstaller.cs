@@ -24,11 +24,11 @@ namespace Snake
             Container.BindInterfacesTo<FoodSpawner>().AsSingle();
             Container.BindInterfacesTo<FoodService>().AsSingle();
             
-            Container.BindInterfacesTo<ScoreModel>().AsSingle();
             Container.BindInterfacesTo<GameLoopController>().AsSingle();
             Container.BindInterfacesTo<GameControllerPresenter>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<HudWindowPresenter>().AsSingle();
 
-            BindProviders();
         }
 
         private void BindModels()
@@ -42,13 +42,6 @@ namespace Snake
                 .To<SnakeModel>()
                 .AsSingle()
                 .WithArguments(Vector2Int.Zero);
-        }
-
-        private void BindProviders()
-        {
-            Container.BindInterfacesTo<GameViewRootProvider>().AsSingle();
-            Container.BindInterfacesTo<SnakePartProvider>().AsSingle();
-            Container.BindInterfacesTo<FoodViewProvider>().AsSingle();
         }
     }
 }

@@ -46,6 +46,8 @@ namespace Snake
         public void Dispose()
         {
             _inputAction.Player.Move.performed -= OnMovePerformed;
+            _inputAction.Disable();
+            _inputAction.Dispose();
         }
     }
 }

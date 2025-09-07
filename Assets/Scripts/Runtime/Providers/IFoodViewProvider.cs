@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using Snake.Providers;
 using Snake.Skinning;
 using UnityEngine;
 using Zenject;
@@ -5,20 +7,22 @@ using Vector2Int = Snake.Core.Vector2Int;
 
 namespace Snake
 {
-    public interface IFoodViewProvider : ISkinnable
+    public interface IFoodViewProvider : ISkinnable, IAssetProvider
     {
         FoodView SpawnFood(Vector2Int position);
     }
     
-    public class FoodViewProvider : IFoodViewProvider, IInitializable
+    public class FoodViewProvider : IFoodViewProvider
     {
         private const string PrefabName = "FoodView";
 
         private FoodView _template;
 
-        public void Initialize()
+        public async UniTask Load()
         {
-            _template = Resources.Load<FoodView>(PrefabName);
+            var foodResult = await Resources.LoadAsync<FoodView>(PrefabName).ToUniTask();
+
+            _template = foodResult as FoodView;
         }
 
         public FoodView SpawnFood(Vector2Int position)
@@ -30,6 +34,11 @@ namespace Snake
         public void ApplySkin(GameSkin skin)
         {
             _template.SetSprite(skin.Food);
+        }
+
+        public void Initialize()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

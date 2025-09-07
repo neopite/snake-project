@@ -10,7 +10,8 @@ namespace Snake
         Menu,
         LoadingLevel,
         Play,
-        Lose,
+        GameOver,
+        Reload,
         Exit
     }
 }

@@ -24,7 +24,8 @@ namespace Snake
             stateRegister.Add<MenuState>(GameState.Menu);
             stateRegister.Add<LoadingLevelState>(GameState.LoadingLevel);
             stateRegister.Add<PlayState>(GameState.Play);
-            stateRegister.Add<LoseState>(GameState.Lose);
+            stateRegister.Add<GameOverState>(GameState.GameOver);
+            stateRegister.Add<ReloadState>(GameState.Reload);
             stateRegister.Add<ExitState>(GameState.Exit);
 
             var machine = new GameStateMachine();
