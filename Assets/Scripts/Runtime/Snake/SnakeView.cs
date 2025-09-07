@@ -6,20 +6,17 @@ namespace Snake
 {
     public class SnakeView : MonoBehaviour
     {
-        private List<SnakePart> _snakeParts;
+        private List<SnakePartView> _snakeParts;
         
-        [SerializeField]
-        private GameObject _snakePartPrefab;
-
-        [SerializeField]
-        private GameObject _head;
-
+        private SnakePartView _snakePartView;
         private int _partsToGrow = 0;
 
-        public void Awake()
+        public void InitializeSnakeView(SnakePartView snakePartViewTemplate)
         {
-            _snakeParts = new List<SnakePart>();
-            _snakeParts.Add(new SnakePart(_head));
+            _snakePartView = snakePartViewTemplate;
+            
+            var part = Instantiate(_snakePartView, Vector3.zero, Quaternion.identity);
+            _snakeParts = new List<SnakePartView> { part };
         }
 
         public void Grow()
@@ -36,10 +33,10 @@ namespace Snake
 
         private void SpawnPart(Vector3 moveDirection)
         {
-            var head = _snakeParts[0].Part.transform.position;
+            var head = _snakeParts[0].transform.position;
             var newPosition = head + moveDirection;
-            var part = Instantiate(_snakePartPrefab, newPosition, Quaternion.identity);
-            _snakeParts.Insert(0, new SnakePart(part));
+            var part = Instantiate(_snakePartView, newPosition, Quaternion.identity);
+            _snakeParts.Insert(0, part);
         }
 
         private void RemoveTail()
@@ -53,7 +50,7 @@ namespace Snake
             var tail = _snakeParts[^1];
             _snakeParts.RemoveAt(_snakeParts.Count - 1);
             
-            Destroy(tail.Part);
+            Destroy(tail.gameObject);
         }
     }
 }

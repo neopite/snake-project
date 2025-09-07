@@ -1,15 +1,16 @@
+using Snake.Skinning;
 using UnityEngine;
 using Zenject;
 using Vector2Int = Snake.Core.Vector2Int;
 
 namespace Snake
 {
-    public interface IFoodViewSpawner
+    public interface IFoodViewProvider : ISkinnable
     {
         FoodView SpawnFood(Vector2Int position);
     }
     
-    public class FoodViewSpawner : IFoodViewSpawner, IInitializable
+    public class FoodViewProvider : IFoodViewProvider, IInitializable
     {
         private const string PrefabName = "FoodView";
 
@@ -26,5 +27,9 @@ namespace Snake
             return Object.Instantiate(_template, pos, Quaternion.identity);
         }
 
+        public void ApplySkin(GameSkin skin)
+        {
+            _template.SetSprite(skin.Food);
+        }
     }
 }

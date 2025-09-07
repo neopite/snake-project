@@ -1,4 +1,5 @@
 using Snake.Core;
+using Snake.Skinning;
 using Zenject;
 
 namespace Snake
@@ -24,13 +25,10 @@ namespace Snake
             Container.BindInterfacesTo<FoodService>().AsSingle();
             
             Container.BindInterfacesTo<ScoreModel>().AsSingle();
-            
             Container.BindInterfacesTo<GameLoopController>().AsSingle();
-
-            Container.BindInterfacesTo<GameViewRootProvider>().AsSingle();
-
             Container.BindInterfacesTo<GameControllerPresenter>().AsSingle();
-            Container.BindInterfacesTo<FoodViewSpawner>().AsSingle();
+
+            BindProviders();
         }
 
         private void BindModels()
@@ -44,6 +42,13 @@ namespace Snake
                 .To<SnakeModel>()
                 .AsSingle()
                 .WithArguments(Vector2Int.Zero);
+        }
+
+        private void BindProviders()
+        {
+            Container.BindInterfacesTo<GameViewRootProvider>().AsSingle();
+            Container.BindInterfacesTo<SnakePartProvider>().AsSingle();
+            Container.BindInterfacesTo<FoodViewProvider>().AsSingle();
         }
     }
 }

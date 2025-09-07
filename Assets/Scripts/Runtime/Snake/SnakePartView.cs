@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Snake
 {
-    public class FoodView : MonoBehaviour
+    public class SnakePartView : MonoBehaviour
     {
         [SerializeField]
         private SpriteRenderer _spriteRenderer;

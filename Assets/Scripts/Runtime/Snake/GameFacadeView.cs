@@ -1,3 +1,4 @@
+using Snake.Skinning;
 using UnityEngine;
 using Vector2Int = Snake.Core.Vector2Int;
 
@@ -10,6 +11,17 @@ namespace Snake
         
         [SerializeField]
         private GridView _grid;
+
+        private GameSkin _gameSkin;
+
+        public void SetSnakeBodyTemplate(SnakePartView snakePartView)
+        {
+            _snake.InitializeSnakeView(snakePartView);
+        }
+        public void SetSkin(GameSkin skin)
+        {
+            _grid.SetSprite(skin.Background);
+        }
         
         public void MoveSnake(Vector2Int moveDirection)
         {
