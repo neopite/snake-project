@@ -43,7 +43,7 @@ namespace Snake
         private void BindProviders()
         {
             Container.BindInterfacesTo<GameViewRootProvider>().AsSingle();
-            Container.BindInterfacesTo<SnakePartProvider>().AsSingle();
+            Container.BindInterfacesTo<SnakeAssetProvider>().AsSingle();
             Container.BindInterfacesTo<FoodViewProvider>().AsSingle();
             Container.BindInterfacesTo<WindowProvider>().AsSingle();
         }

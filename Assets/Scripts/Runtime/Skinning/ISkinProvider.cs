@@ -14,13 +14,19 @@ namespace Snake.Skinning
         public Sprite Food { get; }
         public Sprite SnakeHead { get; }
         public Sprite SnakeBody { get; }
+        public Sprite SnakeBodyCorner { get; }
 
-        public GameSkin(Sprite background, Sprite food, Sprite snakeHead, Sprite snakeBody)
+        public GameSkin(Sprite background,
+            Sprite food,
+            Sprite snakeHead,
+            Sprite snakeBody,
+            Sprite snakeBodyCorner)
         {
             Background = background;
             Food = food;
             SnakeHead = snakeHead;
             SnakeBody = snakeBody;
+            SnakeBodyCorner = snakeBodyCorner;
         }
     }
 }

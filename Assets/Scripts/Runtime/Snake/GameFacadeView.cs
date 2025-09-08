@@ -1,6 +1,5 @@
 using Snake.Skinning;
 using UnityEngine;
-using Vector2Int = Snake.Core.Vector2Int;
 
 namespace Snake
 {
@@ -14,9 +13,9 @@ namespace Snake
 
         private GameSkin _gameSkin;
 
-        public void SetSnakeBodyTemplate(SnakePartView snakeHeadTemplate, SnakePartView snakeBodyTemplate)
+        public void SetSnakeBodyTemplate(Sprite body, Sprite corner, Sprite head)
         {
-            _snake.InitializeSnakeView(snakeHeadTemplate, snakeBodyTemplate);
+            _snake.InitializeSnakeView(body, corner, head);
         }
         public void SetSkin(GameSkin skin)
         {

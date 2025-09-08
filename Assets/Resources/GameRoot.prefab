@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e889f193914e8ca5ccd00f0a3234a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _snakeBodyTemplate: {fileID: 5153021349406500751, guid: 4a2f659020a3e4a1cb426c55b5432bd0, type: 3}
 --- !u!1 &7063272961960968051
 GameObject:
   m_ObjectHideFlags: 0

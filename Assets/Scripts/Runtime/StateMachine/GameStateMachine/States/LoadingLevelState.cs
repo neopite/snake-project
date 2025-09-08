@@ -14,7 +14,7 @@ namespace Snake
         
         private readonly IFoodViewProvider _foodViewProvider;
         private readonly IGameViewRootProvider _gameViewRootProvider;
-        private readonly ISnakePartsProvider _snakePartsProvider;
+        private readonly ISnakeAssetsProvider _snakeAssetsProvider;
         private readonly IWindowService _windowService;
         private readonly ICanvasService _canvasService;
         private readonly ISceneService _sceneService;
@@ -24,7 +24,7 @@ namespace Snake
             IWindowService windowService,
             IFoodViewProvider foodViewProvider,
             IGameViewRootProvider gameViewRootProvider,
-            ISnakePartsProvider snakePartsProvider,
+            ISnakeAssetsProvider snakeAssetsProvider,
             ICanvasService canvasService,
             ISceneService sceneService)
         {
@@ -32,7 +32,7 @@ namespace Snake
             _windowService = windowService;
             _foodViewProvider = foodViewProvider;
             _gameViewRootProvider = gameViewRootProvider;
-            _snakePartsProvider = snakePartsProvider;
+            _snakeAssetsProvider = snakeAssetsProvider;
             _canvasService = canvasService;
             _sceneService = sceneService;
         }
@@ -41,7 +41,7 @@ namespace Snake
         {
             await _foodViewProvider.Load();
             await _gameViewRootProvider.Load();
-            await _snakePartsProvider.Load();
+            await _snakeAssetsProvider.Load();
 
             await _sceneService.LoadGameSceneAsync();
             

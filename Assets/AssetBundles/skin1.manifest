@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3046939075
+CRC: 3807853287
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9edc5b1257f9c4e198e2b5c1f6330cd9
+    Hash: f6e895932f76983880033662d7818bf7
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2d8df09e698f722ada1caa03d3413830
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 9edc5b1257f9c4e198e2b5c1f6330cd9
+    Hash: f6e895932f76983880033662d7818bf7
 HashAppended: 0
 ClassTypes:
 - Class: 28
@@ -18,8 +18,9 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Skins/Skin1/SnakeBody.png
 - Assets/Skins/Skin1/Food.png
+- Assets/Skins/Skin1/SnakeBodyCorner.png
 - Assets/Skins/Skin1/SnakeHead.png
+- Assets/Skins/Skin1/SnakeBody.png
 - Assets/Skins/Skin1/Grid.png
 Dependencies: []

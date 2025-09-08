@@ -12,7 +12,7 @@ namespace Snake.Skinning
     {
         private readonly IFoodViewProvider _foodViewProvider;
         private readonly IGameViewRootProvider _gameViewRootProvider;
-        private readonly ISnakePartsProvider _snakePartsProvider;
+        private readonly ISnakeAssetsProvider _snakeAssetsProvider;
         
         private readonly AssetBundleSkinProvider _buildInSkinProvider;
         
@@ -21,11 +21,11 @@ namespace Snake.Skinning
         public SkinService(
             IFoodViewProvider foodViewProvider,
             IGameViewRootProvider gameViewRootProvider,
-            ISnakePartsProvider snakePartsProvider, AssetBundleSkinProvider buildInSkinProvider)
+            ISnakeAssetsProvider snakeAssetsProvider, AssetBundleSkinProvider buildInSkinProvider)
         {
             _foodViewProvider = foodViewProvider;
             _gameViewRootProvider = gameViewRootProvider;
-            _snakePartsProvider = snakePartsProvider;
+            _snakeAssetsProvider = snakeAssetsProvider;
             _buildInSkinProvider = buildInSkinProvider;
         }
 
@@ -40,7 +40,7 @@ namespace Snake.Skinning
         {
             _foodViewProvider.ApplySkin(skin);
             _gameViewRootProvider.ApplySkin(skin);
-            _snakePartsProvider.ApplySkin(skin);
+            _snakeAssetsProvider.ApplySkin(skin);
         }
     }
 }

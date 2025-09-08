@@ -2,6 +2,7 @@ using System;
 using Snake.Core;
 using Zenject;
 using Object = UnityEngine.Object;
+using Vector2Int = UnityEngine.Vector2Int;
 
 namespace Snake
 {
@@ -14,7 +15,7 @@ namespace Snake
         private readonly SignalBus _signalBus;
         private readonly IFoodViewProvider _foodViewProvider; 
         private readonly IFoodService _foodService;
-        private readonly ISnakePartsProvider _snakePartsProvider;
+        private readonly ISnakeAssetsProvider _snakeAssetsProvider;
         
         private GameFacadeView _view;
 
@@ -26,7 +27,7 @@ namespace Snake
             IGridModel gridModel,
             IFoodViewProvider foodViewProvider, 
             IFoodService foodService,
-            ISnakePartsProvider snakePartsProvider)
+            ISnakeAssetsProvider snakeAssetsProvider)
         {
             _snakeModel = snakeModel;
             _gameViewRootProvider = gameViewRootProvider;
@@ -35,7 +36,7 @@ namespace Snake
             _gridModel = gridModel;
             _foodViewProvider = foodViewProvider;
             _foodService = foodService;
-            _snakePartsProvider = snakePartsProvider;
+            _snakeAssetsProvider = snakeAssetsProvider;
         }
 
         public void Initialize()
@@ -61,10 +62,11 @@ namespace Snake
             _view = gameView;
             _view.SetGridSize(_gridModel.Width, _gridModel.Height);
 
-            var snakeBodyTemplate = _snakePartsProvider.GetBody();
-            var snakeHeadTemplate = _snakePartsProvider.GetHead();
+            var body = _snakeAssetsProvider.GetBody();
+            var corner = _snakeAssetsProvider.GetBodyCorner();
+            var head = _snakeAssetsProvider.GetHead();
             
-            _view.SetSnakeBodyTemplate(snakeHeadTemplate, snakeBodyTemplate);
+            _view.SetSnakeBodyTemplate(body, corner, head);
 
             var newPos = _foodService.CurrentFoodPosition;
             var foodView = _foodViewProvider.SpawnFood(newPos);
@@ -85,8 +87,9 @@ namespace Snake
             {
                 return;
             }
-            
-            _view.MoveSnake(_snakeModel.Direction);
+
+            var direction = _snakeModel.Direction;
+            _view.MoveSnake(new Vector2Int(direction.X, direction.Y));
 
             if (result == StepResult.FoodEaten)
             {

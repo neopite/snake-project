@@ -11,5 +11,10 @@ namespace Snake
         {
             _spriteRenderer.sprite = sprite;
         }
+
+        public void SetPartRotation(float rotationZ)
+        {
+            _spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+        }
     }
 }
