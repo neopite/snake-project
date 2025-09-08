@@ -37,6 +37,7 @@ namespace Snake
             BindWindowFactory();
             
             Container.BindInterfacesTo<ScoreModel>().AsSingle();
+            Container.BindInterfacesTo<SceneService>().AsSingle();
         }
         
         private void BindProviders()

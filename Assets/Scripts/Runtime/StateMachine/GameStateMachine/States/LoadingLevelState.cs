@@ -17,13 +17,16 @@ namespace Snake
         private readonly ISnakePartsProvider _snakePartsProvider;
         private readonly IWindowService _windowService;
         private readonly ICanvasService _canvasService;
+        private readonly ISceneService _sceneService;
 
         public LoadingLevelState(
             ISkinService skinService,
             IWindowService windowService,
             IFoodViewProvider foodViewProvider,
             IGameViewRootProvider gameViewRootProvider,
-            ISnakePartsProvider snakePartsProvider, ICanvasService canvasService)
+            ISnakePartsProvider snakePartsProvider,
+            ICanvasService canvasService,
+            ISceneService sceneService)
         {
             _skinService = skinService;
             _windowService = windowService;
@@ -31,6 +34,7 @@ namespace Snake
             _gameViewRootProvider = gameViewRootProvider;
             _snakePartsProvider = snakePartsProvider;
             _canvasService = canvasService;
+            _sceneService = sceneService;
         }
 
         public async override void OnEnter()
@@ -38,12 +42,9 @@ namespace Snake
             await _foodViewProvider.Load();
             await _gameViewRootProvider.Load();
             await _snakePartsProvider.Load();
-            
-            await SceneManager.LoadSceneAsync(GameSceneName, LoadSceneMode.Additive);
-            await SceneManager.UnloadSceneAsync(StartScene);
-            
-            _windowService.SetRoot(_canvasService.Get(CanvasType.Game).transform);
 
+            await _sceneService.LoadGameSceneAsync();
+            
             var gameSkin = await _skinService.GetSkin();
             
             _skinService.ApplySkin(gameSkin);

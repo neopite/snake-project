@@ -1,16 +1,17 @@
-using System;
-using Cysharp.Threading.Tasks;
-using UnityEngine.SceneManagement;
-
 namespace Snake
 {
     public class ReloadState : BaseState<GameState>
     {
+        private readonly ISceneService _sceneService;
+
+        public ReloadState(ISceneService sceneService)
+        {
+            _sceneService = sceneService;
+        }
 
         public async override void OnEnter()
         {
-            await SceneManager.LoadSceneAsync("GameScene", LoadSceneMode.Single);
-            await UniTask.Delay(TimeSpan.FromSeconds(0.4f));
+            await _sceneService.RestartGameSceneAsync();
             ChangeState(GameState.Play);
         }
 
