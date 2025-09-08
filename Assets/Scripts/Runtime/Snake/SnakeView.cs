@@ -33,6 +33,7 @@ namespace Snake
 
             ReplaceHeadWithBody();
             SpawnHead(direction);
+            RotateHead(_snakeParts[0], moveDirection);
             RemoveTail();
         }
 
@@ -58,6 +59,15 @@ namespace Snake
             var newHead = Instantiate(_snakeHeadTemplate, newHeadPos, Quaternion.identity, transform);
             _snakeParts.Insert(0, newHead);
         }
+        
+        private void RotateHead(SnakePartView head, Vector2Int direction)
+        {
+            if (direction.X == 1) head.transform.rotation = Quaternion.Euler(0, 0, 0); 
+            else if (direction.X == -1) head.transform.rotation = Quaternion.Euler(0, 0, 180);
+            else if (direction.Y == 1) head.transform.rotation = Quaternion.Euler(0, 0, 90);
+            else if (direction.Y == -1) head.transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        
         private void RemoveTail()
         {
             if (_partsToGrow > 0)
