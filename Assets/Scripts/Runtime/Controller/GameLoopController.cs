@@ -22,6 +22,7 @@ namespace Snake
         private static float Speed = 0.14f;
         
         private bool _isGameRunning;
+        private bool _firstInputMade;
         
         public GameLoopController(
             ISnakeModel snakeModel,
@@ -29,8 +30,7 @@ namespace Snake
             ISnakeFoodCollector snakeFoodCollector,
             ISnakeMovementService snakeMovementService,
             IFoodService foodService,
-            IInputProvider inputProvider,
-            IGridModel gridModel)
+            IInputProvider inputProvider)
         {
             _snakeModel = snakeModel;
             _collisionService = collisionService;
@@ -65,6 +65,11 @@ namespace Snake
 
         private void Step()
         {
+            if (!_firstInputMade)
+            {
+                return;
+            }
+            
             StepResult step = StepResult.None;
             
             _snakeMovementService.Move();
@@ -90,6 +95,7 @@ namespace Snake
 
         private void OnInputDirectionChanged(Vector2Int direction)
         {
+            _firstInputMade = true;
             _snakeMovementService.SetDirection(direction);
         }
 

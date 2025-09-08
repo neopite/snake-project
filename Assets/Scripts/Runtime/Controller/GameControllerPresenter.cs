@@ -61,9 +61,10 @@ namespace Snake
             _view = gameView;
             _view.SetGridSize(_gridModel.Width, _gridModel.Height);
 
-            var snakePartViewTemplate = _snakePartsProvider.GetBody();
+            var snakeBodyTemplate = _snakePartsProvider.GetBody();
+            var snakeHeadTemplate = _snakePartsProvider.GetHead();
             
-            _view.SetSnakeBodyTemplate(snakePartViewTemplate);
+            _view.SetSnakeBodyTemplate(snakeHeadTemplate, snakeBodyTemplate);
 
             var newPos = _foodService.CurrentFoodPosition;
             var foodView = _foodViewProvider.SpawnFood(newPos);

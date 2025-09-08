@@ -8,14 +8,17 @@ namespace Snake
     {
         private List<SnakePartView> _snakeParts;
         
-        private SnakePartView _snakePartView;
-        private int _partsToGrow = 0;
+        private SnakePartView _snakeBodyTemplate;
+        private SnakePartView _snakeHeadTemplate;
+        
+        private int _partsToGrow;
 
-        public void InitializeSnakeView(SnakePartView snakePartViewTemplate)
+        public void InitializeSnakeView(SnakePartView snakeHeadTemplate, SnakePartView snakeBodyTemplate)
         {
-            _snakePartView = snakePartViewTemplate;
+            _snakeHeadTemplate = snakeHeadTemplate;
+            _snakeBodyTemplate = snakeBodyTemplate;
             
-            var part = Instantiate(_snakePartView, Vector3.zero, Quaternion.identity);
+            var part = Instantiate(_snakeHeadTemplate, Vector3.zero, Quaternion.identity);
             _snakeParts = new List<SnakePartView> { part };
         }
 
@@ -27,18 +30,34 @@ namespace Snake
         public void MoveSnake(Vector2Int moveDirection)
         {
             var direction = new Vector3(moveDirection.X, moveDirection.Y, 0);
-            SpawnPart(direction);
+
+            ReplaceHeadWithBody();
+            SpawnHead(direction);
             RemoveTail();
         }
 
-        private void SpawnPart(Vector3 moveDirection)
+        private void ReplaceHeadWithBody()
         {
-            var head = _snakeParts[0].transform.position;
-            var newPosition = head + moveDirection;
-            var part = Instantiate(_snakePartView, newPosition, Quaternion.identity);
-            _snakeParts.Insert(0, part);
+            if (_snakeParts.Count == 0)
+            {
+                return;
+            }
+
+            var oldHead = _snakeParts[0];
+            var body = Instantiate(_snakeBodyTemplate, oldHead.transform.position, Quaternion.identity, transform);
+
+            Destroy(oldHead.gameObject);
+            _snakeParts[0] = body;
         }
 
+        private void SpawnHead(Vector3 moveDirection)
+        {
+            var currentHeadPos = _snakeParts[0].transform.position;
+            var newHeadPos = currentHeadPos + moveDirection;
+
+            var newHead = Instantiate(_snakeHeadTemplate, newHeadPos, Quaternion.identity, transform);
+            _snakeParts.Insert(0, newHead);
+        }
         private void RemoveTail()
         {
             if (_partsToGrow > 0)

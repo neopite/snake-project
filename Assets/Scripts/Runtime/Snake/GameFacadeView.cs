@@ -14,9 +14,9 @@ namespace Snake
 
         private GameSkin _gameSkin;
 
-        public void SetSnakeBodyTemplate(SnakePartView snakePartView)
+        public void SetSnakeBodyTemplate(SnakePartView snakeHeadTemplate, SnakePartView snakeBodyTemplate)
         {
-            _snake.InitializeSnakeView(snakePartView);
+            _snake.InitializeSnakeView(snakeHeadTemplate, snakeBodyTemplate);
         }
         public void SetSkin(GameSkin skin)
         {

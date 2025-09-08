@@ -16,17 +16,20 @@ namespace Snake
     public class SnakePartProvider : ISnakePartsProvider
     {
         private SnakePartView _snakeBody;
+        private SnakePartView _snakeHead;
 
         public async UniTask Load()
         {
-            var snakePartObject = await Resources.LoadAsync<SnakePartView>("SnakePart").ToUniTask();
+            var snakeBodyObject = await Resources.LoadAsync<SnakePartView>("SnakeBody").ToUniTask();
+            var snakeHeadObject = await Resources.LoadAsync<SnakePartView>("SnakeHead").ToUniTask();
             
-            _snakeBody = snakePartObject as SnakePartView;
+            _snakeBody = snakeBodyObject as SnakePartView;
+            _snakeHead = snakeHeadObject as SnakePartView;
         }
 
         public SnakePartView GetHead()
         {
-            throw new System.NotImplementedException();
+            return _snakeHead;
         }
 
         public SnakePartView GetTail()
@@ -41,7 +44,8 @@ namespace Snake
 
         public void ApplySkin(GameSkin skin)
         {
-            _snakeBody.SetSprite(skin.Snake);
+            _snakeBody.SetSprite(skin.SnakeBody);
+            _snakeHead.SetSprite(skin.SnakeHead);
         }
     }
 }

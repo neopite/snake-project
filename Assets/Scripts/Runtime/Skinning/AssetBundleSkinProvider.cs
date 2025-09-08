@@ -24,15 +24,17 @@ namespace Snake.Skinning
                 return null;
             }
             
-            var head = await bundle.LoadAssetAsync<Sprite>("Snake").ToUniTask();
+            var head = await bundle.LoadAssetAsync<Sprite>("SnakeHead").ToUniTask();
             var food = await bundle.LoadAssetAsync<Sprite>("Food").ToUniTask();
             var background = await bundle.LoadAssetAsync<Sprite>("Grid").ToUniTask();
+            var body = await bundle.LoadAssetAsync<Sprite>("SnakeBody").ToUniTask();
             
             var headSprite = head as Sprite;
+            var bodySprite = body as Sprite;
             var foodSprite = food as Sprite;
             var backgroundSprite = background as Sprite;
                 
-            return new GameSkin(backgroundSprite, foodSprite, headSprite);
+            return new GameSkin(backgroundSprite, foodSprite, headSprite, bodySprite);
         }
     }
 }

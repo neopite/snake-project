@@ -9,15 +9,17 @@ namespace Snake.Skinning
         {
             var root = "BuildIn/Sprites/";
 
-            var snake = await Resources.LoadAsync<Sprite>(root + "Snake").ToUniTask();
+            var snakeBody = await Resources.LoadAsync<Sprite>(root + "SnakeBody").ToUniTask();
             var food = await Resources.LoadAsync<Sprite>(root + "Grid").ToUniTask();
             var background = await Resources.LoadAsync<Sprite>(root + "Food").ToUniTask();
+            var snakeHead = await Resources.LoadAsync<Sprite>(root + "SnakeHead").ToUniTask();
             
-            var snakeSprite = snake as Sprite;
+            var snakeBodySprite = snakeBody as Sprite;
             var foodSprite = food as Sprite;
             var backgroundSprite = background as Sprite;
+            var snakeHeadSprite = snakeHead as Sprite;
             
-            return new GameSkin(backgroundSprite, snakeSprite, foodSprite);
+            return new GameSkin(backgroundSprite, foodSprite, snakeHeadSprite, snakeBodySprite);
         }
     }
 }

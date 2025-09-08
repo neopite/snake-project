@@ -12,13 +12,15 @@ namespace Snake.Skinning
     {
         public Sprite Background { get; }
         public Sprite Food { get; }
-        public Sprite Snake { get; }
+        public Sprite SnakeHead { get; }
+        public Sprite SnakeBody { get; }
 
-        public GameSkin(Sprite background, Sprite food, Sprite snake)
+        public GameSkin(Sprite background, Sprite food, Sprite snakeHead, Sprite snakeBody)
         {
             Background = background;
             Food = food;
-            Snake = snake;
+            SnakeHead = snakeHead;
+            SnakeBody = snakeBody;
         }
     }
 }

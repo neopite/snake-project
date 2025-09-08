@@ -7,9 +7,10 @@ namespace Snake
         private readonly ISceneService _sceneService;
         private readonly IScoreModel _scoreModel;
 
-        public ReloadState(ISceneService sceneService)
+        public ReloadState(ISceneService sceneService, IScoreModel scoreModel)
         {
             _sceneService = sceneService;
+            _scoreModel = scoreModel;
         }
 
         public async override void OnEnter()
