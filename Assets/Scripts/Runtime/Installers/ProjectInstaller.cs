@@ -63,8 +63,8 @@ namespace Snake
         
         private void BindSkinningServices()
         {
-            Container.Bind<BuildInSkinProvider>().To<BuildInSkinProvider>().AsSingle();
-            Container.Bind<AssetBundleSkinProvider>().To<AssetBundleSkinProvider>().AsSingle();
+            Container.BindInterfacesTo<BuildInSkinProvider>().AsSingle();
+            Container.BindInterfacesTo<AssetBundleSkinProvider>().AsSingle();
             
             Container.BindInterfacesTo<SkinService>().AsSingle();
         }

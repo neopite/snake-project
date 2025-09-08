@@ -1,46 +1,61 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
 namespace Snake.Skinning
 {
     public interface ISkinService
     {
-        UniTask<GameSkin> GetSkin();
+        UniTask<GameSkin> GetSkin(GameSkinType skinType);
         void ApplySkin(GameSkin skin);
     }
     
     public class SkinService : ISkinService
     {
-        private readonly IFoodViewProvider _foodViewProvider;
-        private readonly IGameViewRootProvider _gameViewRootProvider;
-        private readonly ISnakeAssetsProvider _snakeAssetsProvider;
+        private readonly List<ISkinnable> _skinnables = new();
         
-        private readonly AssetBundleSkinProvider _buildInSkinProvider;
+        private Dictionary<SkinProviderType, ISkinProvider> _skinProviders = new();
         
         private GameSkin _gameSkin;
 
         public SkinService(
-            IFoodViewProvider foodViewProvider,
-            IGameViewRootProvider gameViewRootProvider,
-            ISnakeAssetsProvider snakeAssetsProvider, AssetBundleSkinProvider buildInSkinProvider)
+            IEnumerable<ISkinnable> skinnables, 
+            IEnumerable<ISkinProvider> skinProviders)
         {
-            _foodViewProvider = foodViewProvider;
-            _gameViewRootProvider = gameViewRootProvider;
-            _snakeAssetsProvider = snakeAssetsProvider;
-            _buildInSkinProvider = buildInSkinProvider;
+            _skinnables = new List<ISkinnable>(skinnables);
+            _skinProviders = new Dictionary<SkinProviderType, ISkinProvider>();
+
+            foreach (var x in skinProviders)
+            {
+                _skinProviders.Add(x.Type, x);
+            }
         }
 
-        public async UniTask<GameSkin> GetSkin()
+        public async UniTask<GameSkin> GetSkin(GameSkinType skinType)
         {
-            var gameSkin = await _buildInSkinProvider.Get();
-            _gameSkin = gameSkin;
-            return gameSkin;
+            foreach (var x in _skinProviders)
+            {
+                if (x.Value.CanProvide(skinType))
+                {
+                    _gameSkin = await x.Value.Get(skinType);
+                }
+            }
+            
+            return _gameSkin;
         }
 
         public void ApplySkin(GameSkin skin)
         {
-            _foodViewProvider.ApplySkin(skin);
-            _gameViewRootProvider.ApplySkin(skin);
-            _snakeAssetsProvider.ApplySkin(skin);
+            foreach (var x in _skinnables)
+            {
+                x.ApplySkin(skin);
+            }
         }
+    }
+
+    [System.Serializable]
+    public enum GameSkinType
+    {
+        buildIn,
+        skin1
     }
 }

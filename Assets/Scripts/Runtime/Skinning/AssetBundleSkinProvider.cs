@@ -5,38 +5,44 @@ namespace Snake.Skinning
 {
     public class AssetBundleSkinProvider : ISkinProvider
     {
-        private readonly string _assetBundlePath = Application.streamingAssetsPath + "/skin1";
+        public SkinProviderType Type => SkinProviderType.Remote;
         
+        private readonly string _assetBundlePath = Application.streamingAssetsPath + "/";
+
         private GameSkin _skin;
 
 
-        public async UniTask<GameSkin> Get()
+        public async UniTask<GameSkin> Get(GameSkinType type)
         {
             if (_skin != null)
-            {
                 return _skin;
-            }
 
-            var bundle = await AssetBundle.LoadFromFileAsync(_assetBundlePath);
+            var bundle = await AssetBundle.LoadFromFileAsync(_assetBundlePath + type);
             if (bundle == null)
             {
-                Debug.LogError("Failed to load AssetBundle!");
+                Debug.LogError("Failed to load AssetBundle");
                 return null;
             }
-            
-            var head = await bundle.LoadAssetAsync<Sprite>("SnakeHead").ToUniTask();
-            var food = await bundle.LoadAssetAsync<Sprite>("Food").ToUniTask();
-            var background = await bundle.LoadAssetAsync<Sprite>("Grid").ToUniTask();
-            var body = await bundle.LoadAssetAsync<Sprite>("SnakeBody").ToUniTask();
-            var corner = await bundle.LoadAssetAsync<Sprite>("SnakeBodyCorner").ToUniTask();
-            
-            var headSprite = head as Sprite;
-            var bodySprite = body as Sprite;
-            var foodSprite = food as Sprite;
-            var backgroundSprite = background as Sprite;
-            var cornerSprite = corner as Sprite;
-                
-            return new GameSkin(backgroundSprite, foodSprite, headSprite, bodySprite, cornerSprite);
+
+            var background = await LoadSprite(bundle, AssetNames.Background);
+            var food = await LoadSprite(bundle, AssetNames.Food);
+            var head = await LoadSprite(bundle, AssetNames.SnakeHead);
+            var body = await LoadSprite(bundle, AssetNames.SnakeBody);
+            var corner = await LoadSprite(bundle, AssetNames.SnakeBodyCorner);
+
+            _skin = new GameSkin(background, food, head, body, corner);
+            return _skin;
+        }
+
+        public bool CanProvide(GameSkinType skinType)
+        {
+            return skinType != GameSkinType.buildIn;
+        }
+
+        private async UniTask<Sprite> LoadSprite(AssetBundle bundle, string assetName)
+        {
+            var handle = await bundle.LoadAssetAsync<Sprite>(assetName).ToUniTask();
+            return handle as Sprite;
         }
     }
 }

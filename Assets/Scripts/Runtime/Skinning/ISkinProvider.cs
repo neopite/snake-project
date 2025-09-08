@@ -5,7 +5,15 @@ namespace Snake.Skinning
 {
     public interface ISkinProvider
     {
-        UniTask<GameSkin> Get();
+        SkinProviderType Type { get; }
+        UniTask<GameSkin> Get(GameSkinType skinType);
+        bool CanProvide(GameSkinType skinType);
+    }
+
+    public enum SkinProviderType
+    {
+        BuildIn,
+        Remote
     }
 
     public class GameSkin
