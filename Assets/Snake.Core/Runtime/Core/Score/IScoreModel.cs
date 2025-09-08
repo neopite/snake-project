@@ -2,11 +2,19 @@ using System;
 
 namespace Snake.Core
 {
-    public interface IScoreModel
+    public interface IScoreModel : IReadOnlyScoreModel
+    {
+        void Increase(int amount);
+        void Reset();
+    }
+
+    public interface IReadOnlyScoreModel : IScoreModelEvents
+    {
+        int Score { get; }
+    }
+
+    public interface IScoreModelEvents
     {
         event Action<int> OnScoreChanged;
-        int Score { get; }
-        void Increase(int amount);
-        void SetScore(int score);
     }
 }

@@ -5,16 +5,16 @@ namespace Snake
 {
     public class HudWindowPresenter : BaseWindowPresenter<HudWindow>
     {
-        private IScoreModel _scoreModel;
+        private IScoreModelEvents _scoreModelEvents;
         
-        public HudWindowPresenter(SignalBus signalBus, IScoreModel scoreModel) : base(signalBus)
+        public HudWindowPresenter(SignalBus signalBus, IScoreModelEvents scoreModelEvents) : base(signalBus)
         {
-            _scoreModel = scoreModel;
+            _scoreModelEvents = scoreModelEvents;
         }
 
         public override void Initialize()
         {
-            _scoreModel.OnScoreChanged += OnScoreChanged;
+            _scoreModelEvents.OnScoreChanged += OnScoreChanged;
         }
 
         private void OnScoreChanged(int newScore)
@@ -24,7 +24,7 @@ namespace Snake
 
         public override void Dispose()
         {
-            _scoreModel.OnScoreChanged -= OnScoreChanged;
+            _scoreModelEvents.OnScoreChanged -= OnScoreChanged;
         }
     }
 }

@@ -1,16 +1,23 @@
+using Snake.Core;
 using Zenject;
 
 namespace Snake
 {
     public class GameOverPresenter : BaseWindowPresenter<GameOverWindow>
     {
-        public GameOverPresenter(SignalBus signalBus) : base(signalBus)
+        private readonly IReadOnlyScoreModel _scoreModel;
+        public GameOverPresenter(
+            SignalBus signalBus,
+            IReadOnlyScoreModel scoreModel) : base(signalBus)
         {
+            _scoreModel = scoreModel;
         }
 
         public override void Initialize()
         {
             Window.PlayAgainButtonOnClick.AddListener(OnPlayAgainPressed);
+            
+            Window.SetScore(_scoreModel.Score);
         }
 
         private void OnPlayAgainPressed()

@@ -14,9 +14,9 @@ namespace Snake.Core
             OnScoreChanged?.Invoke(Score);
         }
 
-        public void SetScore(int score)
+        public void Reset()
         {
-            Score = score;
+            Score = 0;
         }
     }
 }
