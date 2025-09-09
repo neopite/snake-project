@@ -1,5 +1,9 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Windows;
+using System.IO;
+using Directory = System.IO.Directory;
+using File = System.IO.File;
 
 namespace SnakeView
 {
@@ -12,12 +16,12 @@ namespace SnakeView
         private GameSkin _skin;
 
 
-        public async UniTask<GameSkin> Get(GameSkinType type)
+        public async UniTask<GameSkin> Get(string skinName)
         {
             if (_skin != null)
                 return _skin;
 
-            var bundle = await AssetBundle.LoadFromFileAsync(_assetBundlePath + type);
+            var bundle = await AssetBundle.LoadFromFileAsync(_assetBundlePath + skinName);
             if (bundle == null)
             {
                 Debug.LogError("Failed to load AssetBundle");
@@ -34,9 +38,14 @@ namespace SnakeView
             return _skin;
         }
 
-        public bool CanProvide(GameSkinType skinType)
+        public bool CanProvide(string skinName)
         {
-            return skinType != GameSkinType.BuildIn;
+            if (string.IsNullOrEmpty(skinName))
+            {
+                return false;
+            }
+            
+            return File.Exists(_assetBundlePath + skinName);
         }
 
         private async UniTask<Sprite> LoadSprite(AssetBundle bundle, string assetName)

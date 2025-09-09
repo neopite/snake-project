@@ -5,7 +5,7 @@ namespace SnakeView
     public interface ISkinProvider
     {
         SkinProviderType Type { get; }
-        UniTask<GameSkin> Get(GameSkinType skinType);
-        bool CanProvide(GameSkinType skinType);
+        UniTask<GameSkin> Get(string skinName);
+        bool CanProvide(string skinName);
     }
 }

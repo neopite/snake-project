@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf365d00a9aa496a96714b2d32b960d9, type: 3}
   m_Name: SkinConfig
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 1
+  <SkinName>k__BackingField: cubic

@@ -1,3 +1,4 @@
+using System.IO;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -7,27 +8,35 @@ namespace SnakeView
     {
         public SkinProviderType Type => SkinProviderType.BuildIn;
         
-        private static readonly string Root = "BuildIn/Sprites/";
+        private static readonly string Root = "{0}/Sprites/";
         
-        public async UniTask<GameSkin> Get(GameSkinType skinType)
+        public async UniTask<GameSkin> Get(string skinName)
         {
-            var snakeBody = await LoadSprite(AssetNames.SnakeBody);
-            var food = await LoadSprite( AssetNames.Food);
-            var background = await LoadSprite(AssetNames.Background);
-            var snakeHead = await LoadSprite(AssetNames.SnakeHead);
-            var snakeCorner = await LoadSprite( AssetNames.SnakeBodyCorner);
+            var snakeBody = await LoadSprite(skinName,AssetNames.SnakeBody);
+            var food = await LoadSprite( skinName,AssetNames.Food);
+            var background = await LoadSprite(skinName,AssetNames.Background);
+            var snakeHead = await LoadSprite(skinName,AssetNames.SnakeHead);
+            var snakeCorner = await LoadSprite( skinName,AssetNames.SnakeBodyCorner);
             
             return new GameSkin(background, food, snakeHead, snakeBody, snakeCorner);
         }
 
-        public bool CanProvide(GameSkinType skinType)
+        public bool CanProvide(string skinName)
         {
-            return skinType == GameSkinType.BuildIn;
+            if (string.IsNullOrEmpty(skinName))
+            {
+                return false;
+            }
+            
+            var fullPath = Path.Combine(Application.dataPath, $"Resources/{skinName}");
+            return Directory.Exists(fullPath);
+
         }
 
-        private async UniTask<Sprite> LoadSprite(string assetName)
+        private async UniTask<Sprite> LoadSprite(string skinName, string assetName)
         {
-            var handle = await Resources.LoadAsync<Sprite>(Root + assetName).ToUniTask();
+            var path = string.Format(Root, skinName) + assetName;
+            var handle = await Resources.LoadAsync<Sprite>(path).ToUniTask();
             return handle as Sprite;
         }
     }

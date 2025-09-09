@@ -37,7 +37,7 @@ namespace SnakeView
 
             await _sceneService.LoadGameSceneAsync();
             
-            var gameSkin = await _skinService.GetSkin(_config.Type);
+            var gameSkin = await _skinService.GetSkin(_config.SkinName);
             
             _skinService.ApplySkin(gameSkin);
 
