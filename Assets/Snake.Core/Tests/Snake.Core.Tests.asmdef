@@ -1,0 +1,26 @@
+{
+    "name": "Snake.Core.Tests",
+    "rootNamespace": "Snake.Core.Tests",
+    "references": [
+        "GUID:705daf1babd7341678040fe4dcf2faff"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "AutoFixture.AutoMoq.dll",
+        "Moq.dll",
+        "AutoFixture.dll",
+        "AutoFixture.NUnit3.dll",
+        "Castle.Core.dll",
+        "Fare.dll",
+        "FluentAssertions.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

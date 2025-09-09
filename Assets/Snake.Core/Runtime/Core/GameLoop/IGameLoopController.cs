@@ -1,15 +1,19 @@
 using System;
 
-namespace Snake
+namespace Snake.Core
 {
-    public interface IGameController
+    public interface IGameLoopController : IGameLoopControllerEvents
+    {
+        StepResult Result { get; } 
+        void Step();
+    }
+
+    public interface IGameLoopControllerEvents
     {
         event Action<StepResult> OnGameLoopStepCompleted;
         event Action<ControllerState> OnControllerStateChanged;
-        void InitializeGrid();
-        void LaunchLoop();
     }
-
+    
     public enum ControllerState
     {
         Playing,

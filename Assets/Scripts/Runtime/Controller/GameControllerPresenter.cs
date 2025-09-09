@@ -11,32 +11,35 @@ namespace Snake
         private readonly ISnakeModel _snakeModel;
         private readonly IGridModel _gridModel;
         private readonly IGameViewRootProvider _gameViewRootProvider;
-        private readonly IGameController _gameController;
+        private readonly IGameLoopControllerWrapper _gameLoopControllerWrapper;
         private readonly SignalBus _signalBus;
         private readonly IFoodViewProvider _foodViewProvider; 
         private readonly IFoodService _foodService;
         private readonly ISnakeAssetsProvider _snakeAssetsProvider;
+        private readonly IGameLoopControllerEvents _gameLoopControllerEvents;
         
         private GameFacadeView _view;
 
         public GameControllerPresenter(
             ISnakeModel snakeModel,
             IGameViewRootProvider gameViewRootProvider,
-            IGameController gameController,
+            IGameLoopControllerWrapper gameLoopControllerWrapper,
             SignalBus signalBus,
             IGridModel gridModel,
             IFoodViewProvider foodViewProvider, 
             IFoodService foodService,
-            ISnakeAssetsProvider snakeAssetsProvider)
+            ISnakeAssetsProvider snakeAssetsProvider,
+            IGameLoopControllerEvents gameLoopControllerEvents)
         {
             _snakeModel = snakeModel;
             _gameViewRootProvider = gameViewRootProvider;
-            _gameController = gameController;
+            _gameLoopControllerWrapper = gameLoopControllerWrapper;
             _signalBus = signalBus;
             _gridModel = gridModel;
             _foodViewProvider = foodViewProvider;
             _foodService = foodService;
             _snakeAssetsProvider = snakeAssetsProvider;
+            _gameLoopControllerEvents = gameLoopControllerEvents;
         }
 
         public void Initialize()
@@ -46,13 +49,13 @@ namespace Snake
 
         private void Start()
         {
-            _gameController.OnGameLoopStepCompleted += OnModelStepCompleted;
-            _gameController.OnControllerStateChanged += OnGameStateChanged;
+            _gameLoopControllerEvents.OnGameLoopStepCompleted += OnModelStepCompleted;
+            _gameLoopControllerEvents.OnControllerStateChanged += OnGameStateChanged;
             
-            _gameController.InitializeGrid();
+            _gameLoopControllerWrapper.InitializeGrid();
             InitializeGridView();
 
-            _gameController.LaunchLoop();
+            _gameLoopControllerWrapper.LaunchLoop();
         }
 
         private void InitializeGridView()
@@ -103,8 +106,8 @@ namespace Snake
 
         public void Dispose()
         {
-            _gameController.OnGameLoopStepCompleted -= OnModelStepCompleted;
-            _gameController.OnControllerStateChanged -= OnGameStateChanged;
+            _gameLoopControllerEvents.OnGameLoopStepCompleted -= OnModelStepCompleted;
+            _gameLoopControllerEvents.OnControllerStateChanged -= OnGameStateChanged;
             
             _signalBus.Unsubscribe<LaunchGameControllerSignal>(Start);
         }

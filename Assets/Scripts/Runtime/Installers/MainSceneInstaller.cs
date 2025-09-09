@@ -17,7 +17,6 @@ namespace Snake
             Container.BindInterfacesTo<InputProvider>().AsSingle();
             
             Container.BindInterfacesTo<SnakeCollisionService>().AsSingle();
-            Container.BindInterfacesTo<SnakeFoodCollector>().AsSingle();
             Container.BindInterfacesTo<SnakeMovementService>().AsSingle();
             
             Container.BindInterfacesTo<FoodSettingsProvider>().AsSingle();
@@ -25,6 +24,8 @@ namespace Snake
             Container.BindInterfacesTo<FoodService>().AsSingle();
             
             Container.BindInterfacesTo<GameLoopController>().AsSingle();
+            
+            Container.BindInterfacesTo<GameLoopControllerWrapper>().AsSingle();
             Container.BindInterfacesTo<GameControllerPresenter>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<HudWindowPresenter>().AsSingle();

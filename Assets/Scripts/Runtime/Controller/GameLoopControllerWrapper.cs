@@ -6,38 +6,30 @@ using Vector2Int = Snake.Core.Vector2Int;
 
 namespace Snake
 {
-    public class GameLoopController : IGameController,IDisposable
+    public class GameLoopControllerWrapper : IGameLoopControllerWrapper,IDisposable
     {
-        public event Action<StepResult> OnGameLoopStepCompleted;
-        public event Action<ControllerState> OnControllerStateChanged;
-        
-        private readonly ISnakeModel _snakeModel;
-        private readonly ISnakeCollisionService _collisionService;
-        private readonly ISnakeFoodCollector _snakeFoodCollector;
         private readonly ISnakeMovementService _snakeMovementService;
         private readonly IFoodService _foodService;
         private readonly IInputProvider _inputProvider;
         private readonly IGridModel _gridModel;
         
-        private static float Speed = 0.14f;
+        private readonly IGameLoopController _gameLoopController;
+        
+        private static float Speed = 0.1f;
         
         private bool _isGameRunning;
         private bool _firstInputMade;
         
-        public GameLoopController(
-            ISnakeModel snakeModel,
-            ISnakeCollisionService collisionService,
-            ISnakeFoodCollector snakeFoodCollector,
+        public GameLoopControllerWrapper(
             ISnakeMovementService snakeMovementService,
             IFoodService foodService,
-            IInputProvider inputProvider)
+            IInputProvider inputProvider,
+            IGameLoopController gameLoopController)
         {
-            _snakeModel = snakeModel;
-            _collisionService = collisionService;
-            _snakeFoodCollector = snakeFoodCollector;
             _snakeMovementService = snakeMovementService;
             _foodService = foodService;
             _inputProvider = inputProvider;
+            _gameLoopController = gameLoopController;
         }
 
         public void InitializeGrid()
@@ -70,26 +62,14 @@ namespace Snake
                 return;
             }
             
-            StepResult step = StepResult.None;
-            
-            _snakeMovementService.Move();
+            _gameLoopController.Step();
 
-            if (_collisionService.IsCollided())
+            if (_gameLoopController.Result == StepResult.Collided)
             {
-                OnControllerStateChanged?.Invoke(ControllerState.GameOver);
                 _isGameRunning = false;
-                step = StepResult.Collided;
             }
             
-            if (_foodService.CanCollectFood(_snakeModel.Head, out var foodModel))
-            {
-                _snakeFoodCollector.CollectFood(foodModel);
-                _foodService.PlaceFood();
-                step = StepResult.FoodEaten;
-            }
-            
-            Debug.Log($"Step completed with result {step}");
-            OnGameLoopStepCompleted?.Invoke(step);
+            Debug.Log($"Step completed with result {_gameLoopController.Result}");
         }
         
 
