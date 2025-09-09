@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace SnakeView
 {
@@ -34,6 +35,15 @@ namespace SnakeView
                 }
             }
             
+            if (_gameSkin == null)
+            {
+                var buildInSkinProvider = _skinProviders[SkinProviderType.BuildIn];
+                
+                _gameSkin = await buildInSkinProvider.Get(GameSkinType.BuildIn);
+                
+                Debug.LogError("Game skin not found. Default skin provider will be used as a fallback");
+            }
+
             return _gameSkin;
         }
 

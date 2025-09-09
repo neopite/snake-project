@@ -1,7 +1,10 @@
 ManifestFileVersion: 0
-CRC: 303393552
+CRC: 2607318189
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: casual
+      Dependencies: {}
+    Info_1:
+      Name: cubic
       Dependencies: {}
