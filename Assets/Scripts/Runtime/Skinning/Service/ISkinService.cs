@@ -7,12 +7,4 @@ namespace SnakeView
         UniTask<GameSkin> GetSkin(string skinName);
         void ApplySkin(GameSkin skin);
     }
-
-    [System.Serializable]
-    public enum GameSkinType
-    {
-        BuildIn,
-        Cubic,
-        Casual
-    }
 }
