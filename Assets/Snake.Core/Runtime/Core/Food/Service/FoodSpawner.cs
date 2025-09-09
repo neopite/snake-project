@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Snake.Core
@@ -20,25 +21,34 @@ namespace Snake.Core
             _snakeModel = snakeModel;
             _foodSettingsProvider = foodSettingsProvider;
         }
-
+        
         public FoodModel Spawn()
         {
-            var busyCells = _snakeModel.Parts;
+            var busyCells = new HashSet<Vector2Int>(_snakeModel.Parts);
             var gridHeight = _gridModel.Height;
             var gridWidth = _gridModel.Width;
 
-            Vector2Int spawnPos;
-            
-            //Change implementation on more reliable 
-            do
+            var freeCells = new List<Vector2Int>();
+            for (var x = 0; x < gridWidth; x++)
             {
-                var x = _random.Next(0, gridWidth);
-                var y = _random.Next(0, gridHeight);
-                spawnPos = new Vector2Int(x, y);
-            } while (busyCells.Contains(spawnPos));
+                for (var y = 0; y < gridHeight; y++)
+                {
+                    var pos = new Vector2Int(x, y);
+                    if (!busyCells.Contains(pos))
+                    {
+                        freeCells.Add(pos);
+                    }
+                }
+            }
+
+            if (freeCells.Count == 0)
+            {
+                return null;
+            }
+
+            var spawnPos = freeCells[_random.Next(freeCells.Count)];
 
             var points = _foodSettingsProvider.GetFoodScore();
-            
             return new FoodModel(points, spawnPos);
         }
     }
