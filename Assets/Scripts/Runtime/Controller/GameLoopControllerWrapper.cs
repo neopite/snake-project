@@ -4,7 +4,7 @@ using Snake.Core;
 using UnityEngine;
 using Vector2Int = Snake.Core.Vector2Int;
 
-namespace Snake
+namespace SnakeView
 {
     public class GameLoopControllerWrapper : IGameLoopControllerWrapper,IDisposable
     {

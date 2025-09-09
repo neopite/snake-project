@@ -1,6 +1,7 @@
+using SnakeView.GameStateMachine;
 using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public class AppRoot : IInitializable
     {

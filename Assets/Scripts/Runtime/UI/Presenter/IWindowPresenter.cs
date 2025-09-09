@@ -1,7 +1,7 @@
 using System;
 using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public interface IWindowPresenter<T> : IDisposable where T : WindowBase
     {

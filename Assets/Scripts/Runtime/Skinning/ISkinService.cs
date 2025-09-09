@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
-namespace Snake.Skinning
+namespace SnakeView
 {
     public interface ISkinService
     {

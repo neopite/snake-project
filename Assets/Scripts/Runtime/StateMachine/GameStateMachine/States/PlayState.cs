@@ -1,6 +1,8 @@
+using SnakeView.Base;
+using SnakeView.Canvas;
 using Zenject;
 
-namespace Snake
+namespace SnakeView.GameStateMachine.States
 {
     public class PlayState : BaseState<GameState>
     {

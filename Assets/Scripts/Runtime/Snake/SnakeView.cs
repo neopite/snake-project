@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Snake
+namespace SnakeView
 {
     public class SnakeView : MonoBehaviour
     {

@@ -1,13 +1,13 @@
 using UnityEngine;
 using Zenject;
 
-namespace Snake
+namespace SnakeView.Canvas
 {
     public class CanvasReferenceProvider : MonoBehaviour
     {
         [Header("Structure")]
         [SerializeField]
-        private Canvas _canvas;
+        private UnityEngine.Canvas _canvas;
 
         [SerializeField]
         private CanvasType _canvasType;

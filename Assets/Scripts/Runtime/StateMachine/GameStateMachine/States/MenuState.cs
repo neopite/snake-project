@@ -1,8 +1,8 @@
-using Snake.Window;
+using SnakeView.Base;
 using UnityEngine;
 using Zenject;
 
-namespace Snake
+namespace SnakeView.GameStateMachine.States
 {
     public class MenuState : BaseState<GameState>
     {

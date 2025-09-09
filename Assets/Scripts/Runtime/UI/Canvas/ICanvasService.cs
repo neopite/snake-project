@@ -1,12 +1,10 @@
-using UnityEngine;
-
-namespace Snake
+namespace SnakeView.Canvas
 {
     public interface ICanvasService
     {
-        void Add(CanvasType type, Canvas canvas);
+        void Add(CanvasType type, UnityEngine.Canvas canvas);
         void Remove(CanvasType type);
-        Canvas Get(CanvasType type);
+        UnityEngine.Canvas Get(CanvasType type);
     }
 
     public enum CanvasType

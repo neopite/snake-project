@@ -1,8 +1,7 @@
 using Snake.Core;
-using Snake.Skinning;
 using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public class MainSceneInstaller : MonoInstaller
     {

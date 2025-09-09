@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Snake
+namespace SnakeView.Base
 {
     public interface IStateMachine<TState> where TState : struct
     {

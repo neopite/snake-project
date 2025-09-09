@@ -1,4 +1,4 @@
-namespace Snake
+namespace SnakeView
 {
     public interface IGameControllerPresenter
     {

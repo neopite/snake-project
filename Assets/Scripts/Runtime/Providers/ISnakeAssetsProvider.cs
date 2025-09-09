@@ -1,10 +1,7 @@
 using Cysharp.Threading.Tasks;
-using Snake.Providers;
-using Snake.Skinning;
 using UnityEngine;
-using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public interface ISnakeAssetsProvider : ISkinnable, IAssetProvider
     {

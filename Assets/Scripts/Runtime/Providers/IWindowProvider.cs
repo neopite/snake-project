@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using Snake.Providers;
-using Snake.Skinning;
 using UnityEngine;
-namespace Snake.Window
+
+namespace SnakeView
 {
     public interface IWindowProvider : IAssetProvider
     {

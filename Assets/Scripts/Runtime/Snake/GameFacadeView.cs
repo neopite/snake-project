@@ -1,7 +1,6 @@
-using Snake.Skinning;
 using UnityEngine;
 
-namespace Snake
+namespace SnakeView
 {
     public class GameFacadeView : MonoBehaviour
     {

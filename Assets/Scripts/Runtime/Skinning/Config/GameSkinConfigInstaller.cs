@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Snake.Skinning
+namespace SnakeView.Config
 {
     [CreateAssetMenu(fileName = "SkinInstaller", menuName = "Snake/Installers/SkinInstaller")]
     public class GameSkinConfigInstaller : ScriptableObjectInstaller<GameSkinConfigInstaller>

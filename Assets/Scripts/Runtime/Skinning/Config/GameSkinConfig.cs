@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Snake.Skinning
+namespace SnakeView.Config
 {
     [CreateAssetMenu(fileName = "SkinConfig", menuName = "Snake/Skin Config", order = 0)]
     public class GameSkinConfig : ScriptableObject

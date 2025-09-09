@@ -4,7 +4,7 @@ using Zenject;
 using Object = UnityEngine.Object;
 using Vector2Int = UnityEngine.Vector2Int;
 
-namespace Snake
+namespace SnakeView
 {
     public class GameControllerPresenter : IGameControllerPresenter, IInitializable, IDisposable
     {

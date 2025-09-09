@@ -1,7 +1,7 @@
 using Snake.Core;
 using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public class HudWindowPresenter : BaseWindowPresenter<HudWindow>
     {

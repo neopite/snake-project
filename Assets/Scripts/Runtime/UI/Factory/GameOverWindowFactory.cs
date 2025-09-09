@@ -1,7 +1,6 @@
-using Snake.Window;
 using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public class GameOverWindowFactory : BaseWindowFactory<GameOverPresenter,GameOverWindow>
     {

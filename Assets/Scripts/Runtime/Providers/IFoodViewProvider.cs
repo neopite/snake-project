@@ -1,11 +1,8 @@
 using Cysharp.Threading.Tasks;
-using Snake.Providers;
-using Snake.Skinning;
 using UnityEngine;
-using Zenject;
 using Vector2Int = Snake.Core.Vector2Int;
 
-namespace Snake
+namespace SnakeView
 {
     public interface IFoodViewProvider : ISkinnable, IAssetProvider
     {

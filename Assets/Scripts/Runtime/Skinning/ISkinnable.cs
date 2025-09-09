@@ -1,4 +1,4 @@
-namespace Snake.Skinning
+namespace SnakeView
 {
     public interface ISkinnable
     {

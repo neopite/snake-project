@@ -1,6 +1,8 @@
-using Snake.Skinning;
+using Snake;
+using SnakeView.Base;
+using SnakeView.Config;
 
-namespace Snake
+namespace SnakeView.GameStateMachine.States
 {
     public class LoadingLevelState : BaseState<GameState>
     {

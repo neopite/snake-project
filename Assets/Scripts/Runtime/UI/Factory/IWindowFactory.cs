@@ -1,8 +1,7 @@
-using Snake.Window;
 using UnityEngine;
 using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public interface IWindowFactory
     {

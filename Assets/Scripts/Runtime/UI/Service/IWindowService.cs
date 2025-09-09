@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Snake.Window;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 
-namespace Snake
+namespace SnakeView
 {
     public interface IWindowService
     {

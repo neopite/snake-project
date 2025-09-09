@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using Zenject;
 using Vector2Int = Snake.Core.Vector2Int;
 
-namespace Snake
+namespace SnakeView
 {
     public class InputProvider : IInputProvider, IInitializable, IDisposable
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Snake
+namespace SnakeView
 {
     public class GridView : MonoBehaviour
     {

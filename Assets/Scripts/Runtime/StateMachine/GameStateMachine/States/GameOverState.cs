@@ -1,7 +1,8 @@
+using SnakeView.Base;
 using UnityEngine;
 using Zenject;
 
-namespace Snake
+namespace SnakeView.GameStateMachine.States
 {
     public class GameOverState : BaseState<GameState>
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Snake
+namespace SnakeView
 {
     public class MainMenuWindow : WindowBase
     {

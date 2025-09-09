@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Snake
+namespace SnakeView
 {
     public class WindowBase : MonoBehaviour
     {

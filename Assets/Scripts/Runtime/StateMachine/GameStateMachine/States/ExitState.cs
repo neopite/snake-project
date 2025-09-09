@@ -1,6 +1,7 @@
+using SnakeView.Base;
 using UnityEngine;
 
-namespace Snake
+namespace SnakeView.GameStateMachine.States
 {
     public class ExitState : BaseState<GameState>
     {

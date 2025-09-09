@@ -1,6 +1,8 @@
+using Snake;
 using Snake.Core;
+using SnakeView.Base;
 
-namespace Snake
+namespace SnakeView.GameStateMachine.States
 {
     public class ReloadState : BaseState<GameState>
     {

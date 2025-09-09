@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace Snake.Providers
+namespace SnakeView
 {
     public interface IAssetProvider
     {

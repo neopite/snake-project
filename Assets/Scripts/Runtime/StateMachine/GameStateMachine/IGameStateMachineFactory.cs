@@ -1,6 +1,8 @@
+using SnakeView.Base;
+using SnakeView.GameStateMachine.States;
 using Zenject;
 
-namespace Snake
+namespace SnakeView.GameStateMachine
 {
     public interface IGameStateMachineFactory
     {

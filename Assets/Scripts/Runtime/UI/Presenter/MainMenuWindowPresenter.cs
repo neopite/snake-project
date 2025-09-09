@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public class MainMenuWindowPresenter : BaseWindowPresenter<MainMenuWindow>
     {

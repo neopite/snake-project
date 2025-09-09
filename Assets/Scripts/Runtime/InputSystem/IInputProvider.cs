@@ -1,7 +1,7 @@
 using System;
 using Vector2Int = Snake.Core.Vector2Int;
 
-namespace Snake
+namespace SnakeView
 {
     public interface IInputProvider
     {

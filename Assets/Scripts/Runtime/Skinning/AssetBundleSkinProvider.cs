@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Snake.Skinning
+namespace SnakeView
 {
     public class AssetBundleSkinProvider : ISkinProvider
     {

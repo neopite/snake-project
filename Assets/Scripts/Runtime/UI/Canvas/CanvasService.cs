@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace Snake
+namespace SnakeView.Canvas
 {
     public class CanvasService : ICanvasService
     {
         public event Action<CanvasType>  AddCanvasType;
         
-        private readonly Dictionary<CanvasType, Canvas> _cachedCanvases = new();
+        private readonly Dictionary<CanvasType, UnityEngine.Canvas> _cachedCanvases = new();
 
-        public Canvas Get(CanvasType type)
+        public UnityEngine.Canvas Get(CanvasType type)
         {
             if (_cachedCanvases.TryGetValue(type, out var canvas))
             {
@@ -20,7 +19,7 @@ namespace Snake
             return null;
         }
         
-        public void Add(CanvasType type, Canvas canvas)
+        public void Add(CanvasType type, UnityEngine.Canvas canvas)
         {
             _cachedCanvases[type] = canvas;
 

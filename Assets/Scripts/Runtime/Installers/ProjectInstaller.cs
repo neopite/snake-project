@@ -1,9 +1,10 @@
+using Snake;
 using Snake.Core;
-using Snake.Skinning;
-using Snake.Window;
+using SnakeView.Canvas;
+using SnakeView.GameStateMachine;
 using Zenject;
 
-namespace Snake
+namespace SnakeView
 {
     public class ProjectInstaller : MonoInstaller
     {
@@ -33,8 +34,7 @@ namespace Snake
             
             BindProviders();
             BindSkinningServices();
-            BindWindowPresenter();
-            BindWindowFactory();
+            InstallWindows();
             
             Container.BindInterfacesTo<ScoreModel>().AsSingle();
             Container.BindInterfacesTo<SceneService>().AsSingle();
@@ -48,17 +48,11 @@ namespace Snake
             Container.BindInterfacesTo<WindowProvider>().AsSingle();
         }
 
-        private void BindWindowFactory()
+        private void InstallWindows()
         {
-            Container.BindInterfacesAndSelfTo<MainMenuWindowFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<HudWindowFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameOverWindowFactory>().AsSingle();
-        }
-        private void BindWindowPresenter()
-        {
-            Container.BindInterfacesAndSelfTo<MainMenuWindowPresenter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<HudWindowPresenter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameOverPresenter>().AsSingle();
+            GameOverWindowInstaller.Install(Container);
+            HudWindowInstaller.Install(Container);
+            MenuWindowInstaller.Install(Container);
         }
         
         private void BindSkinningServices()

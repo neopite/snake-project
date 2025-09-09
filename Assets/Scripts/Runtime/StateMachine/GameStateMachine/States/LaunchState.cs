@@ -1,6 +1,7 @@
-using Snake.Window;
+using SnakeView.Base;
+using SnakeView.Canvas;
 
-namespace Snake
+namespace SnakeView.GameStateMachine.States
 {
     public class LaunchState : BaseState<GameState>
     {
