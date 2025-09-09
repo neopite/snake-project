@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEditor;
 
 namespace SnakeView
 {
@@ -6,7 +6,7 @@ namespace SnakeView
     {
         public override void Enter()
         {
-            Application.Quit();
+            EditorApplication.ExecuteMenuItem("Edit/Play");
         }
 
         public override void Exit()

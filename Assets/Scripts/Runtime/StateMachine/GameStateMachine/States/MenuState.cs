@@ -29,7 +29,7 @@ namespace SnakeView
 
         private void OnExitApplication()
         {
-            Application.Quit();
+            ChangeState(GameState.Exit);
         }
 
         public override void Exit()

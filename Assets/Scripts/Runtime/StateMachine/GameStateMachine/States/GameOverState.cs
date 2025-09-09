@@ -18,7 +18,6 @@ namespace SnakeView
         {
             _windowService.Add(WindowName.GameOver);
             
-            _signalBus.Subscribe<ExitApplicationSignal>(OnApplicationExit);
             _signalBus.Subscribe<PlayAgainSignal>(OnPlayAgainPressed);
         }
 
@@ -29,14 +28,8 @@ namespace SnakeView
             ChangeState(GameState.Reload);
         }
 
-        private void OnApplicationExit()
-        {
-            Application.Quit();
-        }
-
         public override void Exit()
         {
-            _signalBus.Unsubscribe<ExitApplicationSignal>(OnApplicationExit);
             _signalBus.Unsubscribe<PlayAgainSignal>(OnPlayAgainPressed);
         }
     }

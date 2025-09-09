@@ -28,7 +28,7 @@ namespace SnakeView
 
         public override void Dispose()
         {
-            Window.PlayAgainButtonOnClick.RemoveAllListeners();
+            Window?.PlayAgainButtonOnClick?.RemoveAllListeners();
         }
     }
 }
