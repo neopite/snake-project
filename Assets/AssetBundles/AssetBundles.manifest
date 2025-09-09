@@ -1,7 +1,7 @@
 ManifestFileVersion: 0
-CRC: 1958578475
+CRC: 303393552
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: skin1
+      Name: casual
       Dependencies: {}

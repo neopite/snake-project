@@ -36,7 +36,7 @@ namespace SnakeView
 
         public bool CanProvide(GameSkinType skinType)
         {
-            return skinType != GameSkinType.buildIn;
+            return skinType != GameSkinType.BuildIn;
         }
 
         private async UniTask<Sprite> LoadSprite(AssetBundle bundle, string assetName)

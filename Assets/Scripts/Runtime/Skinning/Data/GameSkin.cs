@@ -1,21 +1,7 @@
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace SnakeView
 {
-    public interface ISkinProvider
-    {
-        SkinProviderType Type { get; }
-        UniTask<GameSkin> Get(GameSkinType skinType);
-        bool CanProvide(GameSkinType skinType);
-    }
-
-    public enum SkinProviderType
-    {
-        BuildIn,
-        Remote
-    }
-
     public class GameSkin
     {
         public Sprite Background { get; }

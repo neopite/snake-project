@@ -3,12 +3,6 @@ using Cysharp.Threading.Tasks;
 
 namespace SnakeView
 {
-    public interface ISkinService
-    {
-        UniTask<GameSkin> GetSkin(GameSkinType skinType);
-        void ApplySkin(GameSkin skin);
-    }
-    
     public class SkinService : ISkinService
     {
         private readonly List<ISkinnable> _skinnables = new();
@@ -50,12 +44,5 @@ namespace SnakeView
                 x.ApplySkin(skin);
             }
         }
-    }
-
-    [System.Serializable]
-    public enum GameSkinType
-    {
-        buildIn,
-        skin1
     }
 }
