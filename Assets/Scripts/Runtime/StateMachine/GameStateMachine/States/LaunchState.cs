@@ -1,7 +1,6 @@
-using SnakeView.Base;
 using SnakeView.Canvas;
 
-namespace SnakeView.GameStateMachine.States
+namespace SnakeView
 {
     public class LaunchState : BaseState<GameState>
     {
@@ -19,7 +18,7 @@ namespace SnakeView.GameStateMachine.States
             _windowService = windowService;
         }
 
-        public async override void OnEnter()
+        public async override void Enter()
         {
             await _windowProvider.Load();
             
@@ -28,7 +27,7 @@ namespace SnakeView.GameStateMachine.States
             ChangeState(GameState.Menu);
         }
 
-        public override void OnExit()
+        public override void Exit()
         {
         }
     }

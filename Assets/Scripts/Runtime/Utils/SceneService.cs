@@ -1,15 +1,8 @@
-using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-namespace Snake
+namespace SnakeView
 {
-    public interface ISceneService
-    {
-        UniTask LoadGameSceneAsync();
-        UniTask RestartGameSceneAsync();
-    }
-    
     public class SceneService : ISceneService
     {
         private const string GameSceneName = "GameScene";

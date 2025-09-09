@@ -1,8 +1,7 @@
 using Snake;
 using Snake.Core;
-using SnakeView.Base;
 
-namespace SnakeView.GameStateMachine.States
+namespace SnakeView
 {
     public class ReloadState : BaseState<GameState>
     {
@@ -15,14 +14,14 @@ namespace SnakeView.GameStateMachine.States
             _scoreModel = scoreModel;
         }
 
-        public async override void OnEnter()
+        public async override void Enter()
         {
             await _sceneService.RestartGameSceneAsync();
             _scoreModel.Reset();
             ChangeState(GameState.Play);
         }
 
-        public override void OnExit()
+        public override void Exit()
         {
         }
     }

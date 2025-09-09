@@ -1,12 +1,10 @@
-using SnakeView.Base;
-using SnakeView.GameStateMachine.States;
 using Zenject;
 
-namespace SnakeView.GameStateMachine
+namespace SnakeView
 {
     public interface IGameStateMachineFactory
     {
-        GameStateMachine Create();
+        IStateMachine<GameState> Create();
     }
     
     public class GameStateMachineFactory : IGameStateMachineFactory
@@ -18,7 +16,7 @@ namespace SnakeView.GameStateMachine
             _diContainer = diContainer;
         }
 
-        public GameStateMachine Create()
+        public IStateMachine<GameState> Create()
         {
             var stateRegister = new StateRegister<GameState>(_diContainer);
             
@@ -30,7 +28,7 @@ namespace SnakeView.GameStateMachine
             stateRegister.Add<ReloadState>(GameState.Reload);
             stateRegister.Add<ExitState>(GameState.Exit);
 
-            var machine = new GameStateMachine();
+            IStateMachine<GameState> machine = new GameStateMachine();
             
             machine.SetRegister(stateRegister);
 

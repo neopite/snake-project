@@ -1,8 +1,7 @@
-using SnakeView.Base;
 using SnakeView.Canvas;
 using Zenject;
 
-namespace SnakeView.GameStateMachine.States
+namespace SnakeView
 {
     public class PlayState : BaseState<GameState>
     {
@@ -19,7 +18,7 @@ namespace SnakeView.GameStateMachine.States
             _canvasService = canvasService;
         }
 
-        public override void OnEnter()
+        public override void Enter()
         {
             _windowService.SetRoot(_canvasService.Get(CanvasType.Game).transform);
 
@@ -37,7 +36,7 @@ namespace SnakeView.GameStateMachine.States
             ChangeState(GameState.GameOver);
         }
 
-        public override void OnExit()
+        public override void Exit()
         {
             _signalBus.Unsubscribe<GameOverSignal>(OnGameOver);
         }

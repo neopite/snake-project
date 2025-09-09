@@ -1,8 +1,7 @@
 using Snake;
-using SnakeView.Base;
 using SnakeView.Config;
 
-namespace SnakeView.GameStateMachine.States
+namespace SnakeView
 {
     public class LoadingLevelState : BaseState<GameState>
     {
@@ -30,7 +29,7 @@ namespace SnakeView.GameStateMachine.States
             _config = config;
         }
 
-        public async override void OnEnter()
+        public async override void Enter()
         {
             await _foodViewProvider.Load();
             await _gameViewRootProvider.Load();
@@ -45,7 +44,7 @@ namespace SnakeView.GameStateMachine.States
             ChangeState(GameState.Play);
         }
 
-        public override void OnExit()
+        public override void Exit()
         {
         }
     }

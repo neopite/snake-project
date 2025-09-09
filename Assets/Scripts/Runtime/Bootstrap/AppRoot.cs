@@ -1,4 +1,3 @@
-using SnakeView.GameStateMachine;
 using Zenject;
 
 namespace SnakeView

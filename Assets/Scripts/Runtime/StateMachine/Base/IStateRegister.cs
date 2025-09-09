@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Zenject;
 
-namespace SnakeView.Base
+namespace SnakeView
 {
     public interface IStateRegister<TState> where TState : struct 
     {

@@ -1,6 +1,4 @@
-using SnakeView.Base;
-
-namespace SnakeView.GameStateMachine
+namespace SnakeView
 {
     public class GameStateMachine : BaseStateMachine<GameState>
     {

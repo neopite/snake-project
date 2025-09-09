@@ -1,8 +1,7 @@
-using SnakeView.Base;
 using UnityEngine;
 using Zenject;
 
-namespace SnakeView.GameStateMachine.States
+namespace SnakeView
 {
     public class GameOverState : BaseState<GameState>
     {
@@ -15,7 +14,7 @@ namespace SnakeView.GameStateMachine.States
             _signalBus = signalBus;
         }
 
-        public override void OnEnter()
+        public override void Enter()
         {
             _windowService.Add(WindowName.GameOver);
             
@@ -35,7 +34,7 @@ namespace SnakeView.GameStateMachine.States
             Application.Quit();
         }
 
-        public override void OnExit()
+        public override void Exit()
         {
             _signalBus.Unsubscribe<ExitApplicationSignal>(OnApplicationExit);
             _signalBus.Unsubscribe<PlayAgainSignal>(OnPlayAgainPressed);

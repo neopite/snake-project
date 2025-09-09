@@ -1,14 +1,10 @@
 using System;
 using UnityEngine;
 
-namespace SnakeView.Base
+namespace SnakeView
 {
     public interface IStateMachine<TState> where TState : struct
     {
-        event Action OnStateChanged;
-        
-        TState CurrentState { get; }
-
         void Switch(TState state);
         
         void SetRegister(IStateRegister<TState> register);
@@ -16,8 +12,6 @@ namespace SnakeView.Base
     
     public class BaseStateMachine<TState> : IDisposable, IStateMachine<TState> where TState : struct
     {
-        public event Action OnStateChanged;
-        public TState CurrentState { get; private set;}
         private BaseState<TState> _currentState;
         
         private IStateRegister<TState> _register;
@@ -26,13 +20,12 @@ namespace SnakeView.Base
         {
             var state = _register.Get(newState);
             _currentState?.Exit();
+            
             state.OnChangeStateTo += OnChangedStateTo;
             _currentState = state;
-            CurrentState = newState;
             state.Enter();
             
             Debug.Log($"Switched to : {newState}");
-            OnStateChanged?.Invoke();
         }
 
         private void OnChangedStateTo(TState newState)

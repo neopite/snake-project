@@ -1,8 +1,7 @@
-using SnakeView.Base;
 using UnityEngine;
 using Zenject;
 
-namespace SnakeView.GameStateMachine.States
+namespace SnakeView
 {
     public class MenuState : BaseState<GameState>
     {
@@ -14,8 +13,8 @@ namespace SnakeView.GameStateMachine.States
             _windowService = windowService;
             _signalBus = signalBus;
         }
-
-        public override void OnEnter()
+        
+        public override void Enter()
         {
             _windowService.Add(WindowName.MainMenu);
             
@@ -33,7 +32,7 @@ namespace SnakeView.GameStateMachine.States
             Application.Quit();
         }
 
-        public override void OnExit()
+        public override void Exit()
         {
             _signalBus.Unsubscribe<LoadLevelSignal>(OnLoadLevel);
             _signalBus.Unsubscribe<ExitApplicationSignal>(OnExitApplication);

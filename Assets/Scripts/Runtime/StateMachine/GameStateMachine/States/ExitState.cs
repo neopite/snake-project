@@ -1,16 +1,15 @@
-using SnakeView.Base;
 using UnityEngine;
 
-namespace SnakeView.GameStateMachine.States
+namespace SnakeView
 {
     public class ExitState : BaseState<GameState>
     {
-        public override void OnEnter()
+        public override void Enter()
         {
             Application.Quit();
         }
 
-        public override void OnExit()
+        public override void Exit()
         {
         }
     }

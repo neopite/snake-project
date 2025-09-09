@@ -1,7 +1,6 @@
 using Snake;
 using Snake.Core;
 using SnakeView.Canvas;
-using SnakeView.GameStateMachine;
 using Zenject;
 
 namespace SnakeView
